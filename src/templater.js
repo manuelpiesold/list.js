@@ -2,7 +2,8 @@ var getByClass = require('get-by-class');
 
 var Templater = function(list) {
     var itemSource = getItemSource(list.item),
-        templater = this;
+        templater = this,
+        displayType = 'block';
 
     function getItemSource(item) {
         if (item === undefined) {
@@ -69,25 +70,25 @@ var Templater = function(list) {
         return true;
     };
     this.remove = function(item) {
-        list.list.removeChild(item.elm);
+        $(item.elm).css('display', 'none');
     };
     this.show = function(item) {
         templater.create(item);
-        list.list.appendChild(item.elm);
+        $(item.elm).css('display', displayType );
     };
     this.hide = function(item) {
         if (item.elm !== undefined && item.elm.parentNode === list.list) {
-            list.list.removeChild(item.elm);
+            $(item.elm).css('display', 'none');
         }
     };
     this.clear = function() {
         /* .innerHTML = ''; fucks up IE */
         if (list.list.hasChildNodes()) {
-            while (list.list.childNodes.length >= 1)
-            {
-                list.list.removeChild(list.list.firstChild);
-            }
+            $(list.list).children().css('display', 'none');
         }
+    };
+    this.init = function() {
+        displayType = $(list.list).children().css( 'display' ) || 'block';
     };
 };
 

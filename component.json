@@ -32,7 +32,11 @@
     "javve/get-attribute": "*",
     "javve/natural-sort": "*",
     "javve/to-string": "*",
-    "component/type": "*"
+    "component/type": "*",
+    "component/event": "*",
+    "timoxley/to-array": "*",
+    "component/jquery": "*",
+    "techjacker/expect.js": "*"
   },
   "development": {
     "visionmedia/mocha": "*",
